@@ -55,7 +55,7 @@ module yaw_mod
        
         if(yawst%memory.gt.0) then  
         !** Option for memory allocation / erase after yawing !    
-        write(0,*) 'acces here'
+       
         
             if (yawst%flagyaw.eq.0) then                                                         ! generating arrays 
                 yawst%arrayaux(1,2:yawst%larray) =  yawst%arrayaux(1,1:yawst%larray-1)
@@ -102,15 +102,17 @@ module yaw_mod
         
         
         casesel = 0
-        
-        if (((array1(1)-yawst%lastyaw).gt.yawst%tstart).and.(abs(yaw_err).gt.thresholdap)) then
-            casesel = 1
-        endif    
-      
+
         if ((yawst%flagyaw.eq.1).and.(abs(yaw_err2).lt.thresholdap)) then 
             casesel = 2 
         endif
         
+                
+        if (((array1(1)-yawst%lastyaw).gt.yawst%tstart).and.(abs(yaw_err).gt.thresholdap)) then
+            casesel = 1
+        endif    
+      
+
         
         select case (casesel)
         
@@ -171,11 +173,13 @@ module yaw_mod
         
         
         !write(0,*) 'nacelle position is: ', nac_ang*(180/pi)
-!        write(0,*) ' Vx', array1(2)
-!        write(0,*) 'Vy' , array1(3)
-        write(0,*) 'angle miss' , angle_mis
+!       write(0,*) ' Vx', array1(2)
+!       write(0,*) 'Vy' , array1(3)
+        !write(0,*) 'angle miss' , angle_mis
+        
         array2(2) = yaw_err
         array2(3) = yaw_err2
+        array2(4) = yawst%flagyaw 
         
    end subroutine update_yaw
 !**************************************************************************************************
