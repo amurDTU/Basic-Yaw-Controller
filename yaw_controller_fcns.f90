@@ -9,7 +9,7 @@ type yaw_str
   real*8 :: tstart
   integer :: larray , larray2
   real*8 :: threshold, lastyaw, ct , memory
-  real*8 :: flagyaw
+  real*8 :: flagyaw , meancomp
   real(mk) :: array4(100000), arrayaux(1,100000)
   
 end type yaw_str
